@@ -1,0 +1,367 @@
+<?xml version='1.0' encoding='ASCII'?>
+<robot name="ability_hand">
+  <link name="base">
+    <inertial>
+      <origin xyz="0.00065452 -0.00598838 0.05077265" rpy="0.0 -0.0 0.0"/>
+      <mass value="0.37511"/>
+      <inertia ixx="0.000376723021" ixy="-2.3389546e-06" ixz="6.04325119e-06" iyy="0.000467706269" iyz="5.04572726e-05" izz="0.000177650714"/>
+    </inertial>
+    <visual name="wrist_mesh">
+      <geometry>
+        <mesh filename="models/wristmesh.STL"/>
+      </geometry>
+      <origin xyz="0.0 0.0 0.0" rpy="0.0 -0.0 0.0"/>
+    </visual>
+    <visual name="palm_mesh">
+      <geometry>
+        <mesh filename="models/FB_palm_ref_MIR.STL"/>
+      </geometry>
+      <origin xyz="-0.0240476665 0.00378124745 0.03232964923" rpy="3.14148426 -0.08848813 -3.14036612"/>
+    </visual>
+    <collision name="palm_mesh_coll">
+      <geometry>
+        <mesh filename="models/palm_hull_mir.STL"/>
+      </geometry>
+      <origin xyz="-0.0240476665 0.00378124745 0.03232964923" rpy="3.14148426 -0.08848813 -3.14036612"/>
+    </collision>
+  </link>
+  <link name="index_L1">
+    <inertial>
+      <origin xyz="0.0177549969 -0.000213867669 -2.02851433e-05" rpy="0.0 -0.0 0.0"/>
+      <mass value="0.00636"/>
+      <inertia ixx="2.85169621e-07" ixy="1.21454801e-08" ixz="2.02098452e-09" iyy="9.77683041e-07" iyz="-2.87547802e-10" izz="1.05411544e-06"/>
+    </inertial>
+    <visual name="index_mesh_1">
+      <geometry>
+        <mesh filename="models/idx-F1.STL"/>
+      </geometry>
+      <origin xyz="0.0 0.0 0.0" rpy="0.0 -0.0 0.0"/>
+    </visual>
+    <collision name="index_mesh_coll_1">
+      <geometry>
+        <mesh filename="models/idx-F1-hull.STL"/>
+      </geometry>
+      <origin xyz="0.0384727 0.0032577 0.0" rpy="0.0 -0.0 0.0844739"/>
+    </collision>
+  </link>
+  <link name="index_L2">
+    <inertial>
+      <origin xyz="0.01527234 -0.0100039197 -3.11063902e-05" rpy="0.0 -0.0 0.0"/>
+      <mass value="0.006"/>
+      <inertia ixx="4.06340451e-07" ixy="3.99862338e-07" ixz="-1.91966414e-09" iyy="9.13745257e-07" iyz="8.96846813e-10" izz="1.13382499e-06"/>
+    </inertial>
+    <visual name="index_mesh_2">
+      <geometry>
+        <mesh filename="models/idx-F2-Lg.STL"/>
+      </geometry>
+      <origin xyz="0.0 0.0 0.0" rpy="0.0 -0.0 0.0"/>
+    </visual>
+    <collision name="index_mesh_coll_2">
+      <geometry>
+        <mesh filename="models/idx-F2-Lg-hull.STL"/>
+      </geometry>
+      <origin xyz="0.0091241 0.0 0.0" rpy="0.0 -0.0 0.0"/>
+    </collision>
+  </link>
+  <link name="index_tip">
+    <inertial>
+      <origin xyz="0.0 0.0 0.0" rpy="0.0 -0.0 0.0"/>
+      <mass value="1e-06"/>
+      <inertia ixx="1e-16" ixy="0.0" ixz="0.0" iyy="1e-16" iyz="0.0" izz="1e-16"/>
+    </inertial>
+  </link>
+  <link name="middle_L1">
+    <inertial>
+      <origin xyz="0.0177549969 -0.000213867669 -2.02851433e-05" rpy="0.0 -0.0 0.0"/>
+      <mass value="0.00636"/>
+      <inertia ixx="2.85169621e-07" ixy="1.21454801e-08" ixz="2.02098452e-09" iyy="9.77683041e-07" iyz="-2.87547802e-10" izz="1.05411544e-06"/>
+    </inertial>
+    <visual name="middle_mesh_1">
+      <geometry>
+        <mesh filename="models/idx-F1.STL"/>
+      </geometry>
+      <origin xyz="0.0 0.0 0.0" rpy="0.0 -0.0 0.0"/>
+    </visual>
+    <collision name="middle_mesh_coll_1">
+      <geometry>
+        <mesh filename="models/idx-F1-hull.STL"/>
+      </geometry>
+      <origin xyz="0.0384727 0.0032577 0.0" rpy="0.0 -0.0 0.0844739"/>
+    </collision>
+  </link>
+  <link name="middle_L2">
+    <inertial>
+      <origin xyz="0.01527234 -0.0100039197 -3.11063902e-05" rpy="0.0 -0.0 0.0"/>
+      <mass value="0.006"/>
+      <inertia ixx="4.06340451e-07" ixy="3.99862338e-07" ixz="-1.91966414e-09" iyy="9.13745257e-07" iyz="8.96846813e-10" izz="1.13382499e-06"/>
+    </inertial>
+    <visual name="middle_mesh_2">
+      <geometry>
+        <mesh filename="models/idx-F2-Lg.STL"/>
+      </geometry>
+      <origin xyz="0.0 0.0 0.0" rpy="0.0 -0.0 0.0"/>
+    </visual>
+    <collision name="middle_mesh_coll_2">
+      <geometry>
+        <mesh filename="models/idx-F2-Lg-hull.STL"/>
+      </geometry>
+      <origin xyz="0.0091241 0.0 0.0" rpy="0.0 -0.0 0.0"/>
+    </collision>
+  </link>
+  <link name="middle_tip">
+    <inertial>
+      <origin xyz="0.0 0.0 0.0" rpy="0.0 -0.0 0.0"/>
+      <mass value="1e-06"/>
+      <inertia ixx="1e-16" ixy="0.0" ixz="0.0" iyy="1e-16" iyz="0.0" izz="1e-16"/>
+    </inertial>
+  </link>
+  <link name="ring_L1">
+    <inertial>
+      <origin xyz="0.0177549969 -0.000213867669 -2.02851433e-05" rpy="0.0 -0.0 0.0"/>
+      <mass value="0.00636"/>
+      <inertia ixx="2.85169621e-07" ixy="1.21454801e-08" ixz="2.02098452e-09" iyy="9.77683041e-07" iyz="-2.87547802e-10" izz="1.05411544e-06"/>
+    </inertial>
+    <visual name="ring_mesh_1">
+      <geometry>
+        <mesh filename="models/idx-F1.STL"/>
+      </geometry>
+      <origin xyz="0.0 0.0 0.0" rpy="0.0 -0.0 0.0"/>
+    </visual>
+    <collision name="ring_mesh_coll_1">
+      <geometry>
+        <mesh filename="models/idx-F1-hull.STL"/>
+      </geometry>
+      <origin xyz="0.0384727 0.0032577 0.0" rpy="0.0 -0.0 0.0844739"/>
+    </collision>
+  </link>
+  <link name="ring_L2">
+    <inertial>
+      <origin xyz="0.01527234 -0.0100039197 -3.11063902e-05" rpy="0.0 -0.0 0.0"/>
+      <mass value="0.006"/>
+      <inertia ixx="4.06340451e-07" ixy="3.99862338e-07" ixz="-1.91966414e-09" iyy="9.13745257e-07" iyz="8.96846813e-10" izz="1.13382499e-06"/>
+    </inertial>
+    <visual name="ring_mesh_2">
+      <geometry>
+        <mesh filename="models/idx-F2-Lg.STL"/>
+      </geometry>
+      <origin xyz="0.0 0.0 0.0" rpy="0.0 -0.0 0.0"/>
+    </visual>
+    <collision name="ring_mesh_coll_2">
+      <geometry>
+        <mesh filename="models/idx-F2-Lg-hull.STL"/>
+      </geometry>
+      <origin xyz="0.0091241 0.0 0.0" rpy="0.0 -0.0 0.0"/>
+    </collision>
+  </link>
+  <link name="ring_tip">
+    <inertial>
+      <origin xyz="0.0 0.0 0.0" rpy="0.0 -0.0 0.0"/>
+      <mass value="1e-06"/>
+      <inertia ixx="1e-16" ixy="0.0" ixz="0.0" iyy="1e-16" iyz="0.0" izz="1e-16"/>
+    </inertial>
+  </link>
+  <link name="pinky_L1">
+    <inertial>
+      <origin xyz="0.0177549969 -0.000213867669 -2.02851433e-05" rpy="0.0 -0.0 0.0"/>
+      <mass value="0.00636"/>
+      <inertia ixx="2.85169621e-07" ixy="1.21454801e-08" ixz="2.02098452e-09" iyy="9.77683041e-07" iyz="-2.87547802e-10" izz="1.05411544e-06"/>
+    </inertial>
+    <visual name="pinky_mesh_1">
+      <geometry>
+        <mesh filename="models/idx-F1.STL"/>
+      </geometry>
+      <origin xyz="0.0 0.0 0.0" rpy="0.0 -0.0 0.0"/>
+    </visual>
+    <collision name="pinky_mesh_coll_1">
+      <geometry>
+        <mesh filename="models/idx-F1-hull.STL"/>
+      </geometry>
+      <origin xyz="0.0384727 0.0032577 0.0" rpy="0.0 -0.0 0.0844739"/>
+    </collision>
+  </link>
+  <link name="pinky_L2">
+    <inertial>
+      <origin xyz="0.0133249215 -0.00815894775 -4.07689501e-05" rpy="0.0 -0.0 0.0"/>
+      <mass value="0.006"/>
+      <inertia ixx="3.07970159e-07" ixy="2.8092101e-07" ixz="-2.72117073e-09" iyy="7.40775495e-07" iyz="1.08144438e-09" izz="8.93728844e-07"/>
+    </inertial>
+    <visual name="pinky_mesh_2">
+      <geometry>
+        <mesh filename="models/idx-F2.STL"/>
+      </geometry>
+      <origin xyz="0.0 0.0 0.0" rpy="0.0 -0.0 0.0"/>
+    </visual>
+    <collision name="pinky_mesh_coll_2">
+      <geometry>
+        <mesh filename="models/idx-F2-hull.STL"/>
+      </geometry>
+      <origin xyz="0.0091241 0.0 0.0" rpy="0.0 -0.0 0.0"/>
+    </collision>
+  </link>
+  <link name="pinky_tip">
+    <inertial>
+      <origin xyz="0.0 0.0 0.0" rpy="0.0 -0.0 0.0"/>
+      <mass value="1e-06"/>
+      <inertia ixx="1e-16" ixy="0.0" ixz="0.0" iyy="1e-16" iyz="0.0" izz="1e-16"/>
+    </inertial>
+  </link>
+  <link name="thumb_L1">
+    <inertial>
+      <origin xyz="0.01429402 -0.0018885 0.00496979" rpy="0.0 -0.0 0.0"/>
+      <mass value="0.002"/>
+      <inertia ixx="1.19399127e-07" ixy="1.99799715e-08" ixz="-6.88490629e-08" iyy="2.50792788e-07" iyz="8.36717975e-09" izz="2.02280286e-07"/>
+    </inertial>
+    <visual name="thumb_mesh_1">
+      <geometry>
+        <mesh filename="models/thumb-F1-MIR.STL"/>
+      </geometry>
+      <origin xyz="0.0 0.0 0.0" rpy="0.0 -0.0 0.0"/>
+    </visual>
+    <collision name="thumb_coll_mesh_1">
+      <geometry>
+        <mesh filename="models/thumb-F1-MIR-hull.STL"/>
+      </geometry>
+      <origin xyz="0.0278284 0.0 0.0147507" rpy="1.832596 -0.0 0.0"/>
+    </collision>
+  </link>
+  <link name="thumb_L2">
+    <inertial>
+      <origin xyz="0.02776245 0.00562171 0.00376111" rpy="0.0 -0.0 0.0"/>
+      <mass value="0.06"/>
+      <inertia ixx="8.10858569e-06" ixy="-7.50865328e-06" ixz="-6.23786727e-08" iyy="2.16060955e-05" iyz="-1.00037755e-07" izz="2.58546348e-05"/>
+    </inertial>
+    <visual name="thumb_mesh_2">
+      <geometry>
+        <mesh filename="models/thumb-F2-right.STL"/>
+      </geometry>
+      <origin xyz="0.0 0.0 0.0" rpy="0.0 -0.0 0.0"/>
+    </visual>
+    <collision name="thumb_hull_mesh_2">
+      <geometry>
+        <mesh filename="models/thumb-F2-hull.STL"/>
+      </geometry>
+      <origin xyz="0.0651867 0.0233402 0.00393483" rpy="-3.141592 -0.0 0.3438291"/>
+    </collision>
+  </link>
+  <link name="thumb_tip">
+    <inertial>
+      <origin xyz="0.0 0.0 0.0" rpy="0.0 -0.0 0.0"/>
+      <mass value="1e-06"/>
+      <inertia ixx="1e-16" ixy="0.0" ixz="0.0" iyy="1e-16" iyz="0.0" izz="1e-16"/>
+    </inertial>
+  </link>
+  <joint name="index_q1" type="revolute">
+    <parent link="base"/>
+    <child link="index_L1"/>
+    <origin xyz="-0.028 -0.009 0.096" rpy="1.672 -1.317 -1.79"/>
+    <axis xyz="0.0 0.0 1.0"/>
+    <limit effort="6.0" velocity="8.0677777442" lower="0.0" upper="2.0943951"/>
+    <dynamics damping="0.001" friction="0.001"/>
+  </joint>
+  <joint name="index_q2" type="revolute">
+    <parent link="index_L1"/>
+    <child link="index_L2"/>
+    <origin xyz="0.038472723 0.003257695 0.0" rpy="0.0 -0.0 0.80797196"/>
+    <axis xyz="0.0 0.0 1.0"/>
+    <limit effort="6.0" velocity="8.0677777442" lower="0.0" upper="1.9351020399999999"/>
+    <dynamics damping="0.001" friction="0.001"/>
+    <mimic joint="index_q1" multiplier="1.05851325" offset="0.0"/>
+  </joint>
+  <joint name="idx_anchor" type="fixed">
+    <parent link="index_L2"/>
+    <child link="index_tip"/>
+    <origin xyz="0.0315541 -0.01044 0.00014" rpy="0.0 -0.0 0.0"/>
+    <axis xyz="1.0 0.0 0.0"/>
+  </joint>
+  <joint name="middle_q1" type="revolute">
+    <parent link="base"/>
+    <child link="middle_L1"/>
+    <origin xyz="-0.008 -0.012 0.099" rpy="1.513 -1.322 -1.558"/>
+    <axis xyz="0.0 0.0 1.0"/>
+    <limit effort="6.0" velocity="8.0677777442" lower="0.0" upper="2.0943951"/>
+    <dynamics damping="0.001" friction="0.001"/>
+  </joint>
+  <joint name="middle_q2" type="revolute">
+    <parent link="middle_L1"/>
+    <child link="middle_L2"/>
+    <origin xyz="0.038472723 0.003257695 0.0" rpy="0.0 -0.0 0.80797196"/>
+    <axis xyz="0.0 0.0 1.0"/>
+    <limit effort="6.0" velocity="8.0677777442" lower="0.0" upper="1.9351020399999999"/>
+    <dynamics damping="0.001" friction="0.001"/>
+    <mimic joint="middle_q1" multiplier="1.05851325" offset="0.0"/>
+  </joint>
+  <joint name="mid_anchor" type="fixed">
+    <parent link="middle_L2"/>
+    <child link="middle_tip"/>
+    <origin xyz="0.0315541 -0.01044 0.00014" rpy="0.0 -0.0 0.0"/>
+    <axis xyz="1.0 0.0 0.0"/>
+  </joint>
+  <joint name="ring_q1" type="revolute">
+    <parent link="base"/>
+    <child link="ring_L1"/>
+    <origin xyz="0.012 -0.01 0.097" rpy="1.361 -1.315 -1.33"/>
+    <axis xyz="0.0 0.0 1.0"/>
+    <limit effort="6.0" velocity="8.0677777442" lower="0.0" upper="2.0943951"/>
+    <dynamics damping="0.001" friction="0.001"/>
+  </joint>
+  <joint name="ring_q2" type="revolute">
+    <parent link="ring_L1"/>
+    <child link="ring_L2"/>
+    <origin xyz="0.038472723 0.003257695 0.0" rpy="0.0 -0.0 0.80797196"/>
+    <axis xyz="0.0 0.0 1.0"/>
+    <limit effort="6.0" velocity="8.0677777442" lower="0.0" upper="1.9351020399999999"/>
+    <dynamics damping="0.001" friction="0.001"/>
+    <mimic joint="ring_q1" multiplier="1.05851325" offset="0.0"/>
+  </joint>
+  <joint name="rng_anchor" type="fixed">
+    <parent link="ring_L2"/>
+    <child link="ring_tip"/>
+    <origin xyz="0.0315541 -0.01044 0.00014" rpy="0.0 -0.0 0.0"/>
+    <axis xyz="1.0 0.0 0.0"/>
+  </joint>
+  <joint name="pinky_q1" type="revolute">
+    <parent link="base"/>
+    <child link="pinky_L1"/>
+    <origin xyz="0.031 -0.007 0.091" rpy="1.41 -1.315 -1.313"/>
+    <axis xyz="0.0 0.0 1.0"/>
+    <limit effort="6.0" velocity="8.0677777442" lower="0.0" upper="2.0943951"/>
+    <dynamics damping="0.001" friction="0.001"/>
+  </joint>
+  <joint name="pinky_q2" type="revolute">
+    <parent link="pinky_L1"/>
+    <child link="pinky_L2"/>
+    <origin xyz="0.038472723 0.003257695 0.0" rpy="0.0 -0.0 0.80797196"/>
+    <axis xyz="0.0 0.0 1.0"/>
+    <limit effort="6.0" velocity="8.0677777442" lower="0.0" upper="1.9351020399999999"/>
+    <dynamics damping="0.001" friction="0.001"/>
+    <mimic joint="pinky_q1" multiplier="1.05851325" offset="0.0"/>
+  </joint>
+  <joint name="pnky_anchor" type="fixed">
+    <parent link="pinky_L2"/>
+    <child link="pinky_tip"/>
+    <origin xyz="0.0315541 -0.01044 0.00014" rpy="0.0 -0.0 0.0"/>
+    <axis xyz="1.0 0.0 0.0"/>
+  </joint>
+  <joint name="thumb_q1" type="revolute">
+    <parent link="base"/>
+    <child link="thumb_L1"/>
+    <origin xyz="-0.0240476665 0.00378124745 0.03232964923" rpy="-0.016759730000000004 -0.08689062 -2.95079797"/>
+    <axis xyz="0.0 0.0 1.0"/>
+    <limit effort="1.2" velocity="40.338888721" lower="-2.0943951" upper="0.0"/>
+    <dynamics damping="0.001" friction="0.001"/>
+  </joint>
+  <joint name="thumb_q2" type="revolute">
+    <parent link="thumb_L1"/>
+    <child link="thumb_L2"/>
+    <origin xyz="0.0278283501 1.7436510745838653e-19 0.0147507" rpy="1.832595714594045 -0.0 5.366520605522463e-18"/>
+    <axis xyz="0.0 0.0 1.0"/>
+    <limit effort="6.0" velocity="8.0677777442" lower="0.0" upper="2.0943951"/>
+    <dynamics damping="0.001" friction="0.001"/>
+  </joint>
+  <joint name="thmb_anchor" type="fixed">
+    <parent link="thumb_L2"/>
+    <child link="thumb_tip"/>
+    <origin xyz="0.05200122724 0.02800869333 0.00698483578" rpy="0.0 -0.0 0.0"/>
+    <axis xyz="1.0 0.0 0.0"/>
+  </joint>
+</robot>

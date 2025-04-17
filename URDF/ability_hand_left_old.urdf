@@ -1,0 +1,538 @@
+<?xml version='1.0' encoding='ASCII'?>
+<robot name="ability_hand">
+    <link name="base">
+        <inertial>
+            <origin xyz="0.02241911 -0.00015798201 -1.319866e-05" rpy="0.0 -0.0 0.0"/>
+            <mass value="0.2"/>
+            <inertia ixx="1.80984164630525e-05" ixy="-2.1705379817003006e-23" ixz="-2.425310423805825e-22" iyy="1.80984164630525e-05" iyz="-7.404832495154941e-23" izz="3.490664957602615e-05"/>
+        </inertial>
+        <visual name="wrist_mesh">
+            <geometry>
+                <mesh filename="./meshes/ability_hand/visual/wristmesh.obj"/>
+            </geometry>
+            <origin xyz="0.0 0.0 0.0" rpy="0.0 -0.0 0.0"/>
+        </visual>
+        <collision>
+            <geometry>
+                <mesh filename="./meshes/ability_hand/collision/wristmesh_C.obj"/>
+            </geometry>
+            <origin xyz="0.0 0.0 0.0" rpy="0.0 -0.0 0.0"/>
+        </collision>
+    </link>
+
+    <link name="thumb_base">
+        <inertial>
+            <origin xyz="0.02241911 -0.00015798201 -1.319866e-05" rpy="0.0 -0.0 0.0"/>
+            <mass value="0.4"/>
+            <inertia ixx="0.00037672140707703874" ixy="-6.49507252370937e-06" ixz="-2.0160846525851424e-05" iyy="0.0004870697459766924" iyz="-5.47122950699027e-05" izz="0.00021340988293791038"/>
+        </inertial>
+        <visual name="palm_mesh">
+            <geometry>
+                <mesh filename="./meshes/ability_hand/visual/FB_palm_ref.obj"/>
+            </geometry>
+            <origin xyz="0.0 0.0 0.0" rpy="0.0 -0.0 0.0"/>
+        </visual>
+        <collision>
+            <geometry>
+                <mesh filename="./meshes/ability_hand/collision/FB_palm_ref.obj"/>
+            </geometry>
+            <origin xyz="0.0 0.0 0.0" rpy="0.0 -0.0 0.0"/>
+        </collision>
+    </link>
+
+    <link name="thumb_L1">
+        <inertial>
+            <origin xyz="0.014606 -0.001890854 -0.0031155356" rpy="0.0 -0.0 0.0"/>
+            <mass value="0.00268342"/>
+            <inertia ixx="1.601742736734317e-07" ixy="2.6809011235344685e-08" ixz="9.236958569301402e-08" iyy="3.364240909647704e-07" iyz="-1.122682386349285e-08" izz="2.7134057132555457e-07"/>
+        </inertial>
+        <visual name="thumb_mesh_1">
+            <geometry>
+                <mesh filename="./meshes/ability_hand/visual/thumb-F1.obj"/>
+            </geometry>
+            <origin xyz="0.0278283501 0.0 -0.0147507" rpy="-1.832595714594045 -0.0 0.0"/>
+        </visual>
+        <collision>
+            <geometry>
+                <mesh filename="././meshes/ability_hand/collision/thumb-F1_00.obj"/>
+            </geometry>
+            <origin xyz="0.0278283501 0.0 -0.0147507" rpy="-1.832595714594045 -0.0 0.0"/>
+        </collision>
+    </link>
+    <link name="thumb_L2">
+        <inertial>
+            <origin xyz="0.030020522 0.00559476 -0.0041504356" rpy="0.0 -0.0 0.0"/>
+            <mass value="0.0055"/>
+            <inertia ixx="7.43119061886662e-07" ixy="-6.881324201869211e-07" ixz="-5.706254991577486e-09" iyy="1.980052571579648e-06" iyz="-9.165301342493294e-09" izz="2.3694324328765707e-06"/>
+        </inertial>
+        <visual name="thumb_mesh_2">
+            <geometry>
+                <mesh filename="./meshes/ability_hand/visual/thumb-F2.obj"/>
+            </geometry>
+            <origin xyz="0.06518669 0.02334021 0.00393483" rpy="-3.141592 -0.0 0.34383"/>
+        </visual>
+        <collision>
+            <geometry>
+                <mesh filename="././meshes/ability_hand/collision/thumb-F2_00.obj"/>
+            </geometry>
+            <origin xyz="0.06518669 0.02334021 0.00393483" rpy="-3.141592 -0.0 0.34383"/>
+        </collision>
+    </link>
+    <link name="thumb_tip">
+        <inertial>
+            <origin xyz="0.0 0.0 0.0" rpy="0.0 -0.0 0.0"/>
+            <mass value="1e-06"/>
+            <inertia ixx="1e-16" ixy="0.0" ixz="0.0" iyy="1e-16" iyz="0.0" izz="1e-16"/>
+        </inertial>
+    </link>
+    <link name="index_L1">
+        <inertial>
+            <origin xyz="0.02241911 -0.00015798201 -1.319866e-05" rpy="0.0 -0.0 0.0"/>
+            <mass value="0.00635888"/>
+            <inertia ixx="3.3124282767148773e-07" ixy="2.2330388971913986e-08" ixz="-4.0423051483151334e-23" iyy="8.951855044671108e-07" iyz="3.955258326556007e-24" izz="9.568964739006943e-07"/>
+        </inertial>
+        <visual name="index_mesh_1">
+            <geometry>
+                <mesh filename="./meshes/ability_hand/visual/idx-F1.obj"/>
+            </geometry>
+            <origin xyz="0.038472723 0.003257695 0.0" rpy="0.0 -0.0 0.084474"/>
+        </visual>
+        <collision>
+            <geometry>
+                <mesh filename="././meshes/ability_hand/collision/idx-F1_00.obj"/>
+            </geometry>
+            <origin xyz="0.038472723 0.003257695 0.0" rpy="0.0 -0.0 0.084474"/>
+        </collision>
+    </link>
+    <link name="index_L2">
+        <inertial>
+            <origin xyz="0.01336818 -0.00875392 -2.886e-05" rpy="0.0 -0.0 0.0"/>
+            <mass value="0.00645"/>
+            <inertia ixx="3.5475527767985665e-07" ixy="3.5987365604875144e-07" ixz="1.9376632771373108e-13" iyy="8.816725045120625e-07" iyz="-8.322513449574359e-14" izz="1.0710920192158451e-06"/>
+        </inertial>
+        <visual name="index_mesh_2">
+            <geometry>
+                <mesh filename="./meshes/ability_hand/visual/idx-F2.obj"/>
+            </geometry>
+            <origin xyz="0.0091241 0.0 0.0" rpy="0.0 -0.0 0.0"/>
+        </visual>
+        <collision>
+            <geometry>
+                <mesh filename="././meshes/ability_hand/collision/idx-F2_00.obj"/>
+            </geometry>
+            <origin xyz="0.0091241 0.0 0.0" rpy="0.0 -0.0 0.0"/>
+        </collision>
+    </link>
+    <link name="index_tip">
+        <inertial>
+            <origin xyz="0.0 0.0 0.0" rpy="0.0 -0.0 0.0"/>
+            <mass value="1e-06"/>
+            <inertia ixx="1e-16" ixy="0.0" ixz="0.0" iyy="1e-16" iyz="0.0" izz="1e-16"/>
+        </inertial>
+    </link>
+    <link name="middle_L1">
+        <inertial>
+            <origin xyz="0.02241911 -0.00015798201 -1.319866e-05" rpy="0.0 -0.0 0.0"/>
+            <mass value="0.00635888"/>
+            <inertia ixx="3.3124282767148773e-07" ixy="2.2330388971913986e-08" ixz="-4.0423051483151334e-23" iyy="8.951855044671108e-07" iyz="3.955258326556007e-24" izz="9.568964739006943e-07"/>
+        </inertial>
+        <visual name="middle_mesh_1">
+            <geometry>
+                <mesh filename="./meshes/ability_hand/visual/idx-F1.obj"/>
+            </geometry>
+            <origin xyz="0.038472723 0.003257695 0.0" rpy="0.0 -0.0 0.084474"/>
+        </visual>
+        <collision>
+            <geometry>
+                <mesh filename="././meshes/ability_hand/collision/idx-F1_00.obj"/>
+            </geometry>
+            <origin xyz="0.038472723 0.003257695 0.0" rpy="0.0 -0.0 0.084474"/>
+        </collision>
+    </link>
+    <link name="middle_L2">
+        <inertial>
+            <origin xyz="0.01336818 -0.00875392 -2.886e-05" rpy="0.0 -0.0 0.0"/>
+            <mass value="0.00645"/>
+            <inertia ixx="3.5475527767985665e-07" ixy="3.5987365604875144e-07" ixz="1.9376632771373108e-13" iyy="8.816725045120625e-07" iyz="-8.322513449574359e-14" izz="1.0710920192158451e-06"/>
+        </inertial>
+        <visual name="middle_mesh_2">
+            <geometry>
+                <mesh filename="./meshes/ability_hand/visual/idx-F2.obj"/>
+            </geometry>
+            <origin xyz="0.0091241 0.0 0.0" rpy="0.0 -0.0 0.0"/>
+        </visual>
+        <collision>
+            <geometry>
+                <mesh filename="././meshes/ability_hand/collision/idx-F2_00.obj"/>
+            </geometry>
+            <origin xyz="0.0091241 0.0 0.0" rpy="0.0 -0.0 0.0"/>
+        </collision>
+    </link>
+    <link name="middle_tip">
+        <inertial>
+            <origin xyz="0.0 0.0 0.0" rpy="0.0 -0.0 0.0"/>
+            <mass value="1e-06"/>
+            <inertia ixx="1e-16" ixy="0.0" ixz="0.0" iyy="1e-16" iyz="0.0" izz="1e-16"/>
+        </inertial>
+    </link>
+
+    <link name="ring_L1">
+        <inertial>
+            <origin xyz="0.02241911 -0.00015798201 -1.319866e-05" rpy="0.0 -0.0 0.0"/>
+            <mass value="0.00635888"/>
+            <inertia ixx="3.3124282767148773e-07" ixy="2.2330388971913986e-08" ixz="-4.0423051483151334e-23" iyy="8.951855044671108e-07" iyz="3.955258326556007e-24" izz="9.568964739006943e-07"/>
+        </inertial>
+        <visual name="ring_mesh_1">
+            <geometry>
+                <mesh filename="./meshes/ability_hand/visual/idx-F1.obj"/>
+            </geometry>
+            <origin xyz="0.038472723 0.003257695 0.0" rpy="0.0 -0.0 0.084474"/>
+        </visual>
+        <collision>
+            <geometry>
+                <mesh filename="././meshes/ability_hand/collision/idx-F1_00.obj"/>
+            </geometry>
+            <origin xyz="0.038472723 0.003257695 0.0" rpy="0.0 -0.0 0.084474"/>
+        </collision>
+    </link>
+
+    <link name="ring_L2">
+        <inertial>
+            <origin xyz="0.01336818 -0.00875392 -2.886e-05" rpy="0.0 -0.0 0.0"/>
+            <mass value="0.00645"/>
+            <inertia ixx="3.5475527767985665e-07" ixy="3.5987365604875144e-07" ixz="1.9376632771373108e-13" iyy="8.816725045120625e-07" iyz="-8.322513449574359e-14" izz="1.0710920192158451e-06"/>
+        </inertial>
+        <visual name="ring_mesh_2">
+            <geometry>
+                <mesh filename="./meshes/ability_hand/visual/idx-F2.obj"/>
+            </geometry>
+            <origin xyz="0.0091241 0.0 0.0" rpy="0.0 -0.0 0.0"/>
+        </visual>
+        <collision>
+            <geometry>
+                <mesh filename="././meshes/ability_hand/collision/idx-F2_00.obj"/>
+            </geometry>
+            <origin xyz="0.0091241 0.0 0.0" rpy="0.0 -0.0 0.0"/>
+        </collision>
+    </link>
+    <link name="ring_tip">
+
+        <inertial>
+            <origin xyz="0.0 0.0 0.0" rpy="0.0 -0.0 0.0"/>
+            <mass value="1e-06"/>
+            <inertia ixx="1e-16" ixy="0.0" ixz="0.0" iyy="1e-16" iyz="0.0" izz="1e-16"/>
+        </inertial>
+    </link>
+    <link name="pinky_L1">
+        <inertial>
+            <origin xyz="0.02241911 -0.00015798201 -1.319866e-05" rpy="0.0 -0.0 0.0"/>
+            <mass value="0.00635888"/>
+            <inertia ixx="3.3124282767148773e-07" ixy="2.2330388971913986e-08" ixz="-4.0423051483151334e-23" iyy="8.951855044671108e-07" iyz="3.955258326556007e-24" izz="9.568964739006943e-07"/>
+        </inertial>
+        <visual name="pinky_mesh_1">
+            <geometry>
+                <mesh filename="./meshes/ability_hand/visual/idx-F1.obj"/>
+            </geometry>
+            <origin xyz="0.038472723 0.003257695 0.0" rpy="0.0 -0.0 0.084474"/>
+        </visual>
+        <collision>
+            <geometry>
+                <mesh filename="././meshes/ability_hand/collision/idx-F1_00.obj"/>
+            </geometry>
+            <origin xyz="0.038472723 0.003257695 0.0" rpy="0.0 -0.0 0.084474"/>
+        </collision>
+    </link>
+    <link name="pinky_L2">
+        <inertial>
+            <origin xyz="0.01336818 -0.00875392 -2.886e-05" rpy="0.0 -0.0 0.0"/>
+            <mass value="0.00645"/>
+            <inertia ixx="3.5475527767985665e-07" ixy="3.5987365604875144e-07" ixz="1.9376632771373108e-13" iyy="8.816725045120625e-07" iyz="-8.322513449574359e-14" izz="1.0710920192158451e-06"/>
+        </inertial>
+        <visual name="pinky_mesh_2">
+            <geometry>
+                <mesh filename="./meshes/ability_hand/visual/idx-F2.obj"/>
+            </geometry>
+            <origin xyz="0.0091241 0.0 0.0" rpy="0.0 -0.0 0.0"/>
+        </visual>
+        <collision>
+            <geometry>
+                <mesh filename="././meshes/ability_hand/collision/idx-F2_00.obj"/>
+            </geometry>
+            <origin xyz="0.0091241 0.0 0.0" rpy="0.0 -0.0 0.0"/>
+        </collision>
+    </link>
+    <link name="pinky_tip">
+        <inertial>
+            <origin xyz="0.0 0.0 0.0" rpy="0.0 -0.0 0.0"/>
+            <mass value="1e-06"/>
+            <inertia ixx="1e-16" ixy="0.0" ixz="0.0" iyy="1e-16" iyz="0.0" izz="1e-16"/>
+        </inertial>
+    </link>
+
+    <link name="index_L1_01">
+        <inertial>
+            <mass value="1e-06"/>
+            <inertia ixx="1e-16" ixy="0.0" ixz="0.0" iyy="1e-16" iyz="0.0" izz="1e-16"/>
+        </inertial>
+        <collision>
+            <geometry>
+                <mesh filename="././meshes/ability_hand/collision/idx-F1_01.obj"/>
+            </geometry>
+            <origin xyz="0.038472723 0.003257695 0.0" rpy="0.0 -0.0 0.084474"/>
+        </collision>
+    </link>
+    <link name="index_L2_01">
+        <inertial>
+            <mass value="1e-06"/>
+            <inertia ixx="1e-16" ixy="0.0" ixz="0.0" iyy="1e-16" iyz="0.0" izz="1e-16"/>
+        </inertial>
+        <collision>
+            <geometry>
+                <mesh filename="././meshes/ability_hand/collision/idx-F2_01.obj"/>
+            </geometry>
+            <origin xyz="0.0091241 0.0 0.0" rpy="0.0 -0.0 0.0"/>
+        </collision>
+    </link>
+    <link name="middle_L1_01">
+        <inertial>
+            <mass value="1e-06"/>
+            <inertia ixx="1e-16" ixy="0.0" ixz="0.0" iyy="1e-16" iyz="0.0" izz="1e-16"/>
+        </inertial>
+        <collision>
+            <geometry>
+                <mesh filename="././meshes/ability_hand/collision/idx-F1_01.obj"/>
+            </geometry>
+            <origin xyz="0.038472723 0.003257695 0.0" rpy="0.0 -0.0 0.084474"/>
+        </collision>
+    </link>
+    <link name="middle_L2_01">
+        <inertial>
+            <mass value="1e-06"/>
+            <inertia ixx="1e-16" ixy="0.0" ixz="0.0" iyy="1e-16" iyz="0.0" izz="1e-16"/>
+        </inertial>
+        <collision>
+            <geometry>
+                <mesh filename="././meshes/ability_hand/collision/idx-F2_01.obj"/>
+            </geometry>
+            <origin xyz="0.0091241 0.0 0.0" rpy="0.0 -0.0 0.0"/>
+        </collision>
+    </link>
+    <link name="ring_L1_01">
+        <inertial>
+            <mass value="1e-06"/>
+            <inertia ixx="1e-16" ixy="0.0" ixz="0.0" iyy="1e-16" iyz="0.0" izz="1e-16"/>
+        </inertial>
+        <collision>
+            <geometry>
+                <mesh filename="././meshes/ability_hand/collision/idx-F1_01.obj"/>
+            </geometry>
+            <origin xyz="0.038472723 0.003257695 0.0" rpy="0.0 -0.0 0.084474"/>
+        </collision>
+    </link>
+    <link name="ring_L2_01">
+        <inertial>
+            <mass value="1e-06"/>
+            <inertia ixx="1e-16" ixy="0.0" ixz="0.0" iyy="1e-16" iyz="0.0" izz="1e-16"/>
+        </inertial>
+        <collision>
+            <geometry>
+                <mesh filename="././meshes/ability_hand/collision/idx-F2_01.obj"/>
+            </geometry>
+            <origin xyz="0.0091241 0.0 0.0" rpy="0.0 -0.0 0.0"/>
+        </collision>
+    </link>
+    <link name="pinky_L1_01">
+        <inertial>
+            <mass value="1e-06"/>
+            <inertia ixx="1e-16" ixy="0.0" ixz="0.0" iyy="1e-16" iyz="0.0" izz="1e-16"/>
+        </inertial>
+        <collision>
+            <geometry>
+                <mesh filename="././meshes/ability_hand/collision/idx-F1_01.obj"/>
+            </geometry>
+            <origin xyz="0.038472723 0.003257695 0.0" rpy="0.0 -0.0 0.084474"/>
+        </collision>
+    </link>
+    <link name="pinky_L2_01">
+        <inertial>
+            <mass value="1e-06"/>
+            <inertia ixx="1e-16" ixy="0.0" ixz="0.0" iyy="1e-16" iyz="0.0" izz="1e-16"/>
+        </inertial>
+        <collision>
+            <geometry>
+                <mesh filename="././meshes/ability_hand/collision/idx-F2_01.obj"/>
+            </geometry>
+            <origin xyz="0.0091241 0.0 0.0" rpy="0.0 -0.0 0.0"/>
+        </collision>
+    </link>
+    <joint name="hand_mount_2" type="fixed">
+        <parent link="ability_mount1"/>
+        <child link="ability_mount2"/>
+        <origin xyz="0.0 0.0 0.008" rpy="0.0 -0.0 3.141592653589793"/>
+        <axis xyz="1.0 0.0 0.0"/>
+    </joint>
+    <joint name="hand_base" type="fixed" dont_collapse="true">
+        <parent link="ability_mount2"/>
+        <child link="base"/>
+        <origin xyz="0.0 0.0 -0.0015" rpy="0.0 -0.0 0.0"/>
+        <axis xyz="1.0 0.0 0.0"/>
+    </joint>
+    <joint name="wrist2thumb" type="fixed">
+        <parent link="base"/>
+        <child link="thumb_base"/>
+        <origin xyz="0.0240476665 0.00378124745 0.03232964923" rpy="3.14148426 0.08848813 3.14036612"/>
+        <axis xyz="1.0 0.0 0.0"/>
+    </joint>
+    <joint name="thumb_q1" type="revolute">
+        <parent link="thumb_base"/>
+        <child link="thumb_L1"/>
+        <origin xyz="0.0 0.0 0.0" rpy="0.0 -0.0 -2.952748307179587"/>
+        <axis xyz="0.0 0.0 1.0"/>
+        <limit effort="1.2" velocity="40.338888721" lower="-2.0943951" upper="0.0"/>
+        <dynamics damping="0.001" friction="0.001"/>
+    </joint>
+    <joint name="thumb_q2" type="revolute">
+        <parent link="thumb_L1"/>
+        <child link="thumb_L2"/>
+        <origin xyz="0.0278283501 0.0 -0.0147507" rpy="-1.832595714594045 -0.0 0.0"/>
+        <axis xyz="0.0 0.0 1.0"/>
+        <limit effort="6.0" velocity="8.0677777442" lower="0.0" upper="2.0943951"/>
+        <dynamics damping="0.001" friction="0.001"/>
+    </joint>
+    <joint name="thumb_tip_joint" type="fixed" dont_collapse="true">
+        <parent link="thumb_L2"/>
+        <child link="thumb_tip"/>
+        <origin xyz="0.065 0.016 0.0" rpy="0.0 -0.0 0.0"/>
+        <axis xyz="1.0 0.0 0.0"/>
+    </joint>
+    <joint name="index_q1" type="revolute">
+        <parent link="thumb_base"/>
+        <child link="index_L1"/>
+        <origin xyz="-0.00949 -0.01304 -0.06295" rpy="-1.98205 1.2844730000000002 -2.090591"/>
+        <axis xyz="0.0 0.0 1.0"/>
+        <limit effort="6.0" velocity="8.0677777442" lower="0.0" upper="2.0943951"/>
+        <dynamics damping="0.001" friction="0.001"/>
+    </joint>
+    <joint name="index_q2" type="revolute">
+        <parent link="index_L1"/>
+        <child link="index_L2"/>
+        <origin xyz="0.038472723 0.003257695 0.0" rpy="0.0 -0.0 0.80797196"/>
+        <axis xyz="0.0 0.0 1.0"/>
+        <limit effort="6.0" velocity="8.0677777442" lower="0.0" upper="1.9351"/>
+        <dynamics damping="0.001" friction="0.001"/>
+        <mimic joint="index_q1" multiplier="1.05851325" offset="0.0"/>
+    </joint>
+    <joint name="index_tip_joint" type="fixed" dont_collapse="true">
+        <parent link="index_L2"/>
+        <child link="index_tip"/>
+        <origin xyz="0.035 -0.018 0.0" rpy="0.0 -0.0 0.0"/>
+        <axis xyz="1.0 0.0 0.0"/>
+    </joint>
+    <joint name="middle_q1" type="revolute">
+        <parent link="thumb_base"/>
+        <child link="middle_L1"/>
+        <origin xyz="0.009653191 -0.015310271 -0.067853949" rpy="-1.860531 1.308458 -1.896217"/>
+        <axis xyz="0.0 0.0 1.0"/>
+        <limit effort="6.0" velocity="8.0677777442" lower="0.0" upper="2.0943951"/>
+        <dynamics damping="0.001" friction="0.001"/>
+    </joint>
+    <joint name="middle_q2" type="revolute">
+        <parent link="middle_L1"/>
+        <child link="middle_L2"/>
+        <origin xyz="0.038472723 0.003257695 0.0" rpy="0.0 -0.0 0.80797196"/>
+        <axis xyz="0.0 0.0 1.0"/>
+        <limit effort="6.0" velocity="8.0677777442" lower="0.0" upper="1.9351"/>
+        <dynamics damping="0.001" friction="0.001"/>
+        <mimic joint="middle_q1" multiplier="1.05851325" offset="0.0"/>
+    </joint>
+    <joint name="middle_tip_joint" type="fixed" dont_collapse="true">
+        <parent link="middle_L2"/>
+        <child link="middle_tip"/>
+        <origin xyz="0.035 -0.018 0.0" rpy="0.0 -0.0 0.0"/>
+        <axis xyz="1.0 0.0 0.0"/>
+    </joint>
+    <joint name="ring_q1" type="revolute">
+        <parent link="thumb_base"/>
+        <child link="ring_L1"/>
+        <origin xyz="0.02995426 -0.014212492 -0.067286105" rpy="-1.716598 1.3214520000000003 -1.675862"/>
+        <axis xyz="0.0 0.0 1.0"/>
+        <limit effort="6.0" velocity="8.0677777442" lower="0.0" upper="2.0943951"/>
+        <dynamics damping="0.001" friction="0.001"/>
+    </joint>
+    <joint name="ring_q2" type="revolute">
+        <parent link="ring_L1"/>
+        <child link="ring_L2"/>
+        <origin xyz="0.038472723 0.003257695 0.0" rpy="0.0 -0.0 0.80797196"/>
+        <axis xyz="0.0 0.0 1.0"/>
+        <limit effort="6.0" velocity="8.0677777442" lower="0.0" upper="1.9351"/>
+        <dynamics damping="0.001" friction="0.001"/>
+        <mimic joint="ring_q1" multiplier="1.05851325" offset="0.0"/>
+    </joint>
+    <joint name="ring_tip_joint" type="fixed" dont_collapse="true">
+        <parent link="ring_L2"/>
+        <child link="ring_tip"/>
+        <origin xyz="0.035 -0.018 0.0" rpy="0.0 -0.0 0.0"/>
+        <axis xyz="1.0 0.0 0.0"/>
+    </joint>
+    <joint name="pinky_q1" type="revolute">
+        <parent link="thumb_base"/>
+        <child link="pinky_L1"/>
+        <origin xyz="0.049521293 -0.011004583 -0.063029065" rpy="-1.76511 1.32222 -1.658383"/>
+        <axis xyz="0.0 0.0 1.0"/>
+        <limit effort="6.0" velocity="8.0677777442" lower="0.0" upper="2.0943951"/>
+        <dynamics damping="0.001" friction="0.001"/>
+    </joint>
+    <joint name="pinky_q2" type="revolute">
+        <parent link="pinky_L1"/>
+        <child link="pinky_L2"/>
+        <origin xyz="0.038472723 0.003257695 0.0" rpy="0.0 -0.0 0.80797196"/>
+        <axis xyz="0.0 0.0 1.0"/>
+        <limit effort="6.0" velocity="8.0677777442" lower="0.0" upper="1.9351"/>
+        <dynamics damping="0.001" friction="0.001"/>
+        <mimic joint="pinky_q1" multiplier="1.05851325" offset="0.0"/>
+    </joint>
+    <joint name="pinky_tip_joint" type="fixed" dont_collapse="true">
+        <parent link="pinky_L2"/>
+        <child link="pinky_tip"/>
+        <origin xyz="0.035 -0.018 0.0" rpy="0.0 -0.0 0.0"/>
+        <axis xyz="1.0 0.0 0.0"/>
+    </joint>
+    <joint name="index_L1_01" type="fixed">
+        <parent link="index_L1"/>
+        <child link="index_L1_01"/>
+    </joint>
+    <joint name="index_L2_01" type="fixed">
+        <parent link="index_L2"/>
+        <child link="index_L2_01"/>
+    </joint>
+    <joint name="middle_L1_01" type="fixed">
+        <parent link="middle_L1"/>
+        <child link="middle_L1_01"/>
+    </joint>
+    <joint name="middle_L2_01" type="fixed">
+        <parent link="middle_L2"/>
+        <child link="middle_L2_01"/>
+    </joint>
+    <joint name="ring_L1_01" type="fixed">
+        <parent link="ring_L1"/>
+        <child link="ring_L1_01"/>
+    </joint>
+    <joint name="ring_L2_01" type="fixed">
+        <parent link="ring_L2"/>
+        <child link="ring_L2_01"/>
+    </joint>
+    <joint name="pinky_L1_01" type="fixed">
+        <parent link="pinky_L1"/>
+        <child link="pinky_L1_01"/>
+    </joint>
+    <joint name="pinky_L2_01" type="fixed">
+        <parent link="pinky_L2"/>
+        <child link="pinky_L2_01"/>
+    </joint>
+    <material name="white">
+        <color rgba="0.7 0.7 0.7 1.0"/>
+    </material>
+    <material name="dark">
+        <color rgba="0.2 0.2 0.2 1.0"/>
+    </material>
+</robot>
