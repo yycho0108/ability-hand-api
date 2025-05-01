@@ -1,27 +1,21 @@
 #!/usr/bin/env python3
 
+from typing import Optional
 from dataclasses import dataclass, field
 from contextlib import contextmanager
 
+import os
 import serial
-import pickle
 from serial.tools import list_ports
-from plot_floats import plot_floats
 import time
 import numpy as np
 import struct
-import sys
 import platform
-import math
-import keyboard
-import argparse
-from PPP_stuffing import *
-from abh_api_core import *
-
+import pickle
 import pinocchio as pin
 from pathlib import Path
 
-import os
+from domi.app.cli import zen_cli
 
 
 @contextmanager
@@ -48,7 +42,7 @@ class Ser(serial.Serial):
         return out
 
 
-## Send Miscellanous Command to Ability Hand
+# Send Miscellanous Command to Ability Hand
 
 
 def create_misc_msg(cmd):
@@ -153,9 +147,13 @@ class Psyonic:
             [6.0, 6.0, 6.0, 6.0, 6.0, 1.2]
         ))
 
-        urdf_path: str = './urdf/ability_coacd.urdf'
+        urdf_path: Optional[str] = './urdf/ability_coacd.urdf'
+        prefix: str = 'right_'
+        use_gravity_compensation: bool = True
 
-    def __init__(self, cfg: Config):
+    def __init__(self,
+                 cfg: Config,
+                 robot: Optional[pin.RobotWrapper] = None):
         self.cfg = cfg
         self.port = cfg.port
         self.ser = None
@@ -164,22 +162,25 @@ class Psyonic:
         self.data.position[:] = np.deg2rad(cfg.init_pos)
         self.data.position_target[:] = np.deg2rad(cfg.init_pos)
 
-        path = Path(cfg.urdf_path)
-        with with_dir(path.parent):
-            self.robot = pin.RobotWrapper.BuildFromURDF(filename=path.name,
-                                                        package_dirs=["."],
-                                                        root_joint=None)
-            mot_joint = [
-                'left_index_q1',
-                'left_middle_q1',
-                'left_ring_q1',
-                'left_pinky_q1',
-                'left_thumb_q2',  # "thumb flexor"
-                'left_thumb_q1'  # "thumb rotator"
-            ]
-            pin_joint = list(self.robot.model.names[1:])
-            self.pin_from_mot = index_map(pin_joint,
-                                          mot_joint)
+        if robot is None:
+            path = Path(cfg.urdf_path)
+            with with_dir(path.parent):
+                robot = pin.RobotWrapper.BuildFromURDF(filename=path.name,
+                                                       package_dirs=["."],
+                                                       root_joint=None)
+        self.robot = robot
+
+        mot_joint = [
+            F'{cfg.prefix}index_q1',
+            F'{cfg.prefix}middle_q1',
+            F'{cfg.prefix}ring_q1',
+            F'{cfg.prefix}pinky_q1',
+            F'{cfg.prefix}thumb_q2',  # "thumb flexor"
+            F'{cfg.prefix}thumb_q1'  # "thumb rotator"
+        ]
+        pin_joint = list(self.robot.model.names[1:])
+        self.pin_from_mot = index_map(pin_joint,
+                                      mot_joint)
 
     def to_pin(self, q: np.ndarray):
         s = 1.05851325
@@ -258,16 +259,16 @@ class Psyonic:
         needReset = True
         if len(data) == 1:
             replyFormat = data[0]
-            ## Reply variant 3 length is
+            # Reply variant 3 length is
             if (replyFormat & 0xF) == 2:
                 replyLen = 38
             else:
                 replyLen = 71
-            ##read the rest of the data
+            # read the rest of the data
             data = ser.read(replyLen)
             needReset = False
             if len(data) == replyLen:
-                ## Verify Checksum
+                # Verify Checksum
                 sum = replyFormat
                 for byte in data:
                     sum = (sum + byte) % 256
@@ -277,9 +278,9 @@ class Psyonic:
                     needReset = True
                 else:
                     # print('read')
-                    ## Extract Position Data
-                    ## Position Data is included in all formats in same way
-                    ## So we can safely do this no matter the format
+                    # Extract Position Data
+                    # Position Data is included in all formats in same way
+                    # So we can safely do this no matter the format
                     for i in range(0, 6):
                         rawData = struct.unpack(
                             '<h', data[i * 4:2 + (i * 4)])[0]
@@ -303,9 +304,9 @@ class Psyonic:
                                 '<h', vel_data[i * 4:2 + (i * 4)])[0]
                             velRead[i] = rawData * 0.25 / cfg.gear_ratio[i]
 
-                    ## Extract Touch Data if Available
+                    # Extract Touch Data if Available
                     if replyLen == 71:
-                        ## Extract Data two at a time
+                        # Extract Data two at a time
                         for i in range(0, 15):
                             dualData = data[(
                                 i * 3) + 24:((i + 1) * 3) + 24]
@@ -335,9 +336,9 @@ class Psyonic:
         cfg = self.cfg
 
         txBuf = []
-        ## Address in byte 0
+        # Address in byte 0
         txBuf.append((struct.pack('<B', cfg.addr))[0])
-        ## Format Header in byte 1
+        # Format Header in byte 1
         txBuf.append((struct.pack('<B', cfg.reply_mode))[0])
 
         # Position data for all 6 fingers, scaled to fixed point representation
@@ -346,7 +347,7 @@ class Psyonic:
             txBuf.append((struct.pack('<B', (posFixed & 0xFF)))[0])
             txBuf.append((struct.pack('<B', (posFixed >> 8) & 0xFF))[0])
 
-        ## calculate checksum
+        # calculate checksum
         cksum = 0
         for b in txBuf:
             cksum = cksum + b
@@ -365,15 +366,16 @@ class Psyonic:
         # print(kp[5])
         torque = kp * p - cfg.kd * d
 
-        # Gravity compensation...ish
-        if False:
+        # Optional gravity compensation...
+        # FIXME(ycho): _NOT_ correct unless the
+        # _pose_ of the psyonic hand is also incorporated...!
+        if self.cfg.use_gravity_compensation:
             h = pin.nonLinearEffects(
                 self.robot.model,
                 self.robot.data,
                 self.to_pin(self.data.position),
                 self.to_pin(self.data.velocity),
             )
-            # print(h[8])
             torque[5] += h[8]
         return torque
 
@@ -392,9 +394,9 @@ class Psyonic:
         #     0.04)
 
         txBuf = []
-        ## Address in byte 0
+        # Address in byte 0
         txBuf.append((struct.pack('<B', cfg.addr))[0])
-        ## Format Header in byte 1
+        # Format Header in byte 1
         txBuf.append((struct.pack('<B', cfg.reply_mode))[0])
 
         # _Current_ data for all 6 fingers, scaled to fixed point
@@ -405,7 +407,7 @@ class Psyonic:
             txBuf.append((struct.pack('<B', (posFixed & 0xFF)))[0])
             txBuf.append((struct.pack('<B', (posFixed >> 8) & 0xFF))[0])
 
-        ## calculate checksum
+        # calculate checksum
         cksum = 0
         for b in txBuf:
             cksum = cksum + b
@@ -446,22 +448,30 @@ class Psyonic:
         return True
 
 
-def main():
+@dataclass
+class AppConfig(Psyonic.Config):
+    control_hz: float = 256
+    log_path: Optional[str] = None
+
+
+@zen_cli
+def main(cfg: AppConfig):
     action = np.zeros(6)
-    log = {
-        'stamp': [],
-        'pos': [],
-        'vel': [],
-        'tau': [],
-        'pos_target': []
-    }
+
+    if cfg.log_path is not None:
+        log = {
+            'stamp': [],
+            'pos': [],
+            'vel': [],
+            'tau': [],
+            'pos_target': []
+        }
 
     try:
-        with Psyonic(Psyonic.Config()).open() as hand:
-            # for _ in range(4):
-            target_hz = 256
-            last_step = time.time()
+        with Psyonic(cfg).open() as hand:
             while True:
+
+                # -- create action --
                 for i in range(6):
                     ft = time.time() * 3.0 + i
                     action[i] = (0.5 * np.sin(ft) + 0.5) * 45 + 15
@@ -469,23 +479,29 @@ def main():
                     # action[i] = np.where((action[i] > 37.5), 60, 15)
                     # action[
                 # print(action[5])
+
+                # NOTE(ycho): "flip" the sign of thumb rotator
+                # TODO(ycho): make this "automatic"
                 action[5] = -action[5]
-                # action[:] = 15
+
+                # write/read pos
                 hand.write_pos(np.deg2rad(action))
-                # hand.write_pos(hand.data.position)
                 read = hand.read_pos()
-                # print(read.position, read.velocity)
-                # print('read', read)
-                log['stamp'].append(time.time())
-                log['pos'].append(np.copy(read.position))
-                log['tau'].append(np.copy(read.torque_target))
-                log['vel'].append(np.copy(read.velocity))
-                log['pos_target'].append(np.copy(read.position_target))
-                # time.sleep(1.0 / 256)
-                time.sleep(1.0 / 300.0)
+
+                # append to log
+                if cfg.log_path is not None:
+                    log['stamp'].append(time.time())
+                    log['pos'].append(np.copy(read.position))
+                    log['tau'].append(np.copy(read.torque_target))
+                    log['vel'].append(np.copy(read.velocity))
+                    log['pos_target'].append(np.copy(read.position_target))
+
+                # abide by control frequency
+                time.sleep(1.0 / cfg.control_hz)
     finally:
-        with open('/tmp/psyonic_log.pkl', 'wb') as fp:
-            pickle.dump(log, fp)
+        if cfg.log_path is not None:
+            with open(cfg.log_path, 'wb') as fp:
+                pickle.dump(log, fp)
 
 
 if __name__ == '__main__':
