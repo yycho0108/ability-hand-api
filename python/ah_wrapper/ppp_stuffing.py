@@ -5,22 +5,7 @@ from typing import List
 import os
 import sys
 
-CONFIG_PATH = os.path.join(os.getcwd(), "config.py")
-
-# If config.py doesn't exist, create a basic one
-if not os.path.exists(CONFIG_PATH):
-    with open(CONFIG_PATH, "w") as f:
-        f.write(
-            """# Auto-generated config file
-write_log = True
-velocity_warning = True
-"""
-        )
-
-# Add current directory to sys.path so config.py can be imported
-sys.path.insert(0, os.getcwd())
-
-import config
+from ah_wrapper import config
 
 FRAME_CHAR = 0x7E
 ESC_CHAR = 0x7D
