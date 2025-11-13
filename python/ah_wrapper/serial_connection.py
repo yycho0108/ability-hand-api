@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 from abc import ABC, abstractmethod
 import serial
 import serial.rs485
@@ -119,8 +121,11 @@ class SerialConnection(SerialConnectionBase):
         if not connected:
             if config.write_log:
                 logging.warning(f"Recieved {msg} when trying to connect")
-            print("Could not connect to any hand, check logs for more info")
-            exit(1)
+            # print("Could not connect to any hand, check logs for more info")
+            # exit(1)
+            raise ConnectionError(
+                "Could not connect to any hand, check logs for more info"
+            )
 
     def _connect(
         self,

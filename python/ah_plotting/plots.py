@@ -1,7 +1,8 @@
 import time
 from collections import deque
 import os
-
+import matplotlib
+matplotlib.rcParams['backend'] = 'TkAgg'
 import matplotlib.pyplot as plt
 from matplotlib.animation import FuncAnimation
 import matplotlib.image as mpimg
